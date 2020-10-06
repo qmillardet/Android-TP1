@@ -13,4 +13,6 @@
     <string name="last_results">Last results :</string>
     <string name="last_alert">Last Alert :</string>
     <string name="interogation_point">\?\?\?</string>
+    <string name="inconnu">Inconnu</string>
+    <string name="off">Arrêté</string>
 </resources>

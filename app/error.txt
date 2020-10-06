@@ -1,0 +1,27 @@
+2020-10-05 20:23:11.521 3684-3684/com.example.projetamio E/AndroidRuntime: FATAL EXCEPTION: main
+    Process: com.example.projetamio, PID: 3684
+    java.lang.RuntimeException: Unable to start receiver com.example.projetamio.MyBootBroadcastReceiver: java.lang.IllegalStateException: Not allowed to start service Intent { cmp=com.example.projetamio/.MainService }: app is in background uid UidRecord{8f0c486 u0a77 RCVR idle procs:1 seq(0,0,0)}
+        at android.app.ActivityThread.handleReceiver(ActivityThread.java:3259)
+        at android.app.ActivityThread.-wrap17(Unknown Source:0)
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1677)
+        at android.os.Handler.dispatchMessage(Handler.java:105)
+        at android.os.Looper.loop(Looper.java:164)
+        at android.app.ActivityThread.main(ActivityThread.java:6541)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:240)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:767)
+     Caused by: java.lang.IllegalStateException: Not allowed to start service Intent { cmp=com.example.projetamio/.MainService }: app is in background uid UidRecord{8f0c486 u0a77 RCVR idle procs:1 seq(0,0,0)}
+        at android.app.ContextImpl.startServiceCommon(ContextImpl.java:1505)
+        at android.app.ContextImpl.startService(ContextImpl.java:1461)
+        at android.content.ContextWrapper.startService(ContextWrapper.java:644)
+        at android.content.ContextWrapper.startService(ContextWrapper.java:644)
+        at com.example.projetamio.MyBootBroadcastReceiver.onReceive(MyBootBroadcastReceiver.java:24)
+        at android.app.ActivityThread.handleReceiver(ActivityThread.java:3252)
+        at android.app.ActivityThread.-wrap17(Unknown Source:0) 
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1677) 
+        at android.os.Handler.dispatchMessage(Handler.java:105) 
+        at android.os.Looper.loop(Looper.java:164) 
+        at android.app.ActivityThread.main(ActivityThread.java:6541) 
+        at java.lang.reflect.Method.invoke(Native Method) 
+        at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:240) 
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:767) 
