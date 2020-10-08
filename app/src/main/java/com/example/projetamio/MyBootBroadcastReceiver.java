@@ -22,9 +22,11 @@ public class MyBootBroadcastReceiver extends BroadcastReceiver {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
         if ( settings.getBoolean("startAtBoot", false)){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(new Intent(context, MainService.class));
+                context.startForegroundService(new Intent(context, DatareceiverFromServerService.class));
+                Log.d("MyBootBroadcastReceiver", "IF");
             } else {
-                context.startService(new Intent(context, MainService.class));
+                context.startService(new Intent(context, DatareceiverFromServerService.class));
+                Log.d("MyBootBroadcastReceiver", "Else");
             }
         }
         else{
