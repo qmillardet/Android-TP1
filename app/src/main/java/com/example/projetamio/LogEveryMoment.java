@@ -2,6 +2,7 @@ package com.example.projetamio;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import java.util.TimerTask;
@@ -19,7 +20,11 @@ public class LogEveryMoment extends TimerTask {
     public void run() {
         Log.d("LogEvetyMoment","Log : " + LogEveryMoment.number);
         LogEveryMoment.number++;
-        context.startService(new Intent(context, DatareceiverFromServerService.class));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(new Intent(context, DatareceiverFromServerService.class));
+        } else {
+            context.startService(new Intent(context, DatareceiverFromServerService.class));
+        }
 
     }
 }
