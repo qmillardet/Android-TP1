@@ -35,4 +35,4 @@ jobs:
 
       # Step 4: Yun your unit tests
       - name: Run Unit Tests
-        run: ./gradlew testStagingDebugUnitTest
+        run: ./gradlew ExampleUnitTest
