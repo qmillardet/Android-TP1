@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.JsonReader;
@@ -63,6 +64,7 @@ public class DatareceiverFromServerService extends Service implements DownloadCa
 
     @Override
     public void updateFromDownload(Object result){
+        boolean changement = false, res;
         if (result instanceof String) {
             String resultString = (String)result;
             if (resultString.contains("HTTP error code:") || resultString.contains("no protocol:")) {
@@ -90,7 +92,10 @@ public class DatareceiverFromServerService extends Service implements DownloadCa
                                         lampe = this.listLampe.getLampe(reader.nextString());
                                     } else if (name.equals("light")) {
                                         assert lampe != null;
-                                        lampe.addEtat(reader.nextLong());
+                                        res = lampe.addEtat(reader.nextLong());
+                                        if(!changement){
+                                            changement = res;
+                                        }
                                     } else {
                                         reader.skipValue();
                                     }
@@ -121,6 +126,16 @@ public class DatareceiverFromServerService extends Service implements DownloadCa
                     }
                 }
             }
+        }
+        if (changement || true){
+            Intent emailIntent = new Intent();
+            emailIntent.setAction(Intent.ACTION_SEND);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, "quentin.millardet@telecomnancy.eu");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mouvement détecté");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Du mouvement à été detecté par l'application");
+            emailIntent.setType("text/plain");
+            startActivity(Intent.createChooser(emailIntent,"Send mail..."));
         }
 
     }

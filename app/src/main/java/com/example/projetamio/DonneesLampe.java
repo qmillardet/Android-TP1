@@ -1,5 +1,8 @@
 package com.example.projetamio;
 
+import android.content.Intent;
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 public class DonneesLampe {
@@ -18,7 +21,7 @@ public class DonneesLampe {
         return etat;
     }
 
-    public void addEtat(Long valeur){
+    public boolean addEtat(Long valeur){
         this.donnees.add(valeur);
         int nbDonne = this.donnees.size();
         if(Math.abs((this.donnees.get(nbDonne) - this.donnees.get(nbDonne-1))) >= 15){
@@ -29,7 +32,9 @@ public class DonneesLampe {
             else{
                 this.etat = false;
             }
+            return true;
         }
+        return false;
     }
 
     public String getNom() {

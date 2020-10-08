@@ -11,10 +11,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.preference.Preference;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,9 +65,10 @@ public class MainActivity extends AppCompatActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent preferencesIntent = new Intent(this, Settings.class);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(preferencesIntent);
             return true;
         }
 
