@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <receiver android:name="com.example.projetamio.MyBootBroadcastReceiver" android:enabled="true"
-      w      android:exported="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" /> </intent-filter>
         </receiver>
