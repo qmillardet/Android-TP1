@@ -31,7 +31,6 @@ public class DatareceiverFromServerService extends Service implements DownloadCa
     private static DatareceiverFromServerService instance = null;
     private DownloadTask downloadTask;
     private DownloadCallback<String> callback;
-    private Context mBaseConext;
 
     public DatareceiverFromServerService(){
         super();
@@ -129,13 +128,16 @@ public class DatareceiverFromServerService extends Service implements DownloadCa
         }
         if (changement || true){
             Intent emailIntent = new Intent();
+            emailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             emailIntent.setAction(Intent.ACTION_SEND);
             emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.putExtra(Intent.EXTRA_EMAIL, "quentin.millardet@telecomnancy.eu");
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mouvement détecté");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Du mouvement à été detecté par l'application");
             emailIntent.setType("text/plain");
-            startActivity(Intent.createChooser(emailIntent,"Send mail..."));
+            Intent chooserIntent = Intent.createChooser(emailIntent,"Envoyer à ");
+            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(chooserIntent);
         }
 
     }
